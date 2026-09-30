@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+
+.font-display { font-family: var(--font-display); }
+
+/* range slider */
+input[type="range"].pix-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"].pix-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid #7c3aed;
+  box-shadow: 0 2px 10px rgba(124,58,237,.45);
+  cursor: grab;
+  transition: transform .15s ease;
+}
+input[type="range"].pix-slider::-webkit-slider-thumb:hover { transform: scale(1.12); }
+input[type="range"].pix-slider::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 9999px;
+  background: #fff; border: 3px solid #7c3aed;
+  box-shadow: 0 2px 10px rgba(124,58,237,.45);
+  cursor: grab;
+}
+
+.dark input[type="range"].pix-slider::-webkit-slider-thumb { border-color: #a78bfa; }
+.dark input[type="range"].pix-slider::-moz-range-thumb { border-color: #a78bfa; }
+
+/* dashed dropzone marching ants */
+@keyframes dashMove { to { stroke-dashoffset: -24; } }
+.drop-ants { stroke-dasharray: 10 8; animation: dashMove 1.2s linear infinite; }
+
+@keyframes floaty { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
+.animate-floaty { animation: floaty 4s ease-in-out infinite; }
+
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(124,58,237,.35);} 70% { box-shadow: 0 0 0 14px rgba(124,58,237,0);} 100% { box-shadow: 0 0 0 0 rgba(124,58,237,0);} }
+.pulse-ring { animation: pulse-ring 2s infinite; }
+
+/* thin scrollbars */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: rgba(124,58,237,.3); border-radius: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
